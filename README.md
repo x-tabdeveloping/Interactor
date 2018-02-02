@@ -50,7 +50,8 @@ Well, this might look a little overcomplicated at this point, but you'll see the
 Still we have a problem with this little program though:
 Instead of printing : `Please enter your name` it prints us ` "Please enter your name" `
 Now to fix this issue, I've come up with a datatype : `ShowString`
-let's consider the following, fixed example: ```haskell
+let's consider the following, fixed example: 
+```haskell
 main = do
 	x <- ShowString("Please enter your name") -| (getIt . Printer)
 	ShowString ("hello" ++ x) -| (see . Printer)
