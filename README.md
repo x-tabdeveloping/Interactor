@@ -1,11 +1,11 @@
-#The Interactor Module
+# The Interactor Module
 
 The reason I created this library and the Interactor typeclass, is that the GTK Haskell library made alot of things really messy.
 I think in a functional language computations should be separated from IO, and the GTK library messes up the whole thing.
 So I thought it would be a great idea to come up with a simple way of getting input and handling output with GTK and
 different methods.
 
-##The Interactor Typeclass
+## The Interactor Typeclass
 
 ```haskell
 class Interactor s where
@@ -39,7 +39,8 @@ Now let's see how we could use out Printer Interactor:
 ```haskell
 main = do
 	x <- "Please enter your name" -| (getIt . Printer)
-	"hello" ++ x -| (see . Printer)```
+	"hello" ++ x -| (see . Printer)
+```
 
 Well, this might look a little overcomplicated at this point, but you'll see the point of it I promise.
 
@@ -49,7 +50,8 @@ Now to fix this issue, I've come up with a datatype : `ShowString`
 let's consider the following, fixed example: ```haskell
 main = do
 	x <- ShowString("Please enter your name") -| (getIt . Printer)
-	ShowString ("hello" ++ x) -| (see . Printer)```
+	ShowString ("hello" ++ x) -| (see . Printer)
+```
 
 This behavior has also an advantage though: we don't have to show other types every single time.
 So every type that implements the Show class will show up correctly on our output.
@@ -62,6 +64,7 @@ You can just go like this :
 ```haskell
 main = do
 	x <- ShowString ("Please enter your name") -| (getIt . Message)
-	ShowString ("hello" ++ x) -| (see . Message)```
+	ShowString ("hello" ++ x) -| (see . Message)
+```
 
 A little less noisy than average GTK+ code, isn't it? 
