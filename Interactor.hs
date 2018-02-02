@@ -1,10 +1,12 @@
 module Interactor
-(Printer,
-Message,
-Notification,
-ShowString,
+(Printer(..),
+Message(..),
+Notification(..),
+ShowString(..),
 (-|),
-Interactor)
+Interactor,
+see,
+getIt)
  where
 
 import Control.Concurrent
@@ -44,7 +46,7 @@ instance Interactor Message where
     see (Message (Just x)) = do
         void initGUI
         window <- windowNew
-        set window [windowTitle := "Message", windowDefaultWidth := 230, windowDefaultHeight := 100]
+        set window [windowTitle := "Message", windowDefaultWidth := 500, windowDefaultHeight := 200]
         windowSetPosition window WinPosCenter
         label <- labelNew $ Just $ show x
         containerAdd window label
@@ -58,7 +60,7 @@ instance Interactor Message where
         retVal <- newIORef "Default"
         void initGUI
         window <- windowNew
-        set window [windowTitle := (show x), windowDefaultWidth := 230, windowDefaultHeight := 100]
+        set window [windowTitle := (show x), windowDefaultWidth := 500, windowDefaultHeight := 200]
         windowSetPosition window WinPosCenter
         entry <- entryNew
         button <- buttonNew
