@@ -10,7 +10,8 @@ different methods.
 ```haskell
 class Interactor s where
     see :: (Show a) => s a -> IO()
-    getIt :: (Show a) => s a -> IO String```
+    getIt :: (Show a) => s a -> IO String
+```
 
 As you can tell from this little chunk of code, the class isn't supposed to be implemented for concrete types, but for type constructors.
 It's also pretty obvious, that the see function is actually for handling Output and the getIt function works as input.
@@ -26,14 +27,16 @@ instance Interactor Printer where
         x -| (see . Printer)
         s <- getLine
         return s
-    getIt (Printer Nothing) = getLine```
+    getIt (Printer Nothing) = getLine
+```
 
 basically Printer is just using the console as an IO source.
 
 There's this nasty little infix function, which you might have already noticed : `(-|)`
 I wrote it just in order to make these interactions look a lot less scary, here goes it's type signature :
 ```haskell
-(-|) :: a -> (Maybe a -> b) -> b```
+(-|) :: a -> (Maybe a -> b) -> b
+```
 
 Now let's see how we could use out Printer Interactor:
 ```haskell
